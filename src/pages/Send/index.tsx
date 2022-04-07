@@ -5,6 +5,7 @@ import { broadcastTx } from "src/utils/blockstream-api";
 
 import CreateTxForm from "./components/CreateTxForm";
 import TransactionSummary from "./components/TransactionSummary";
+import { createTransasction, signTransaction } from "src/utils/bitcoinjs-lib";
 
 import { Address, DecoratedUtxo } from "src/types";
 
@@ -24,7 +25,10 @@ export default function Send({ utxos, changeAddresses, mnemonic }: Props) {
     amountToSend: number
   ) => {
     try {
-      throw new Error("Function not implemented yet");
+      const psbt = await createTransasction(utxos, recipientAddress, amountToSend, changeAddresses[0]);
+      setTransaction(psbt);
+      setTransaction(await signTransaction(psbt, mnemonic));
+      setStep(1);
     } catch (e) {
       setError((e as Error).message);
     }

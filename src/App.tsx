@@ -18,6 +18,7 @@ import {
   getXpubFromPrivateKey,
   deriveChildPublicKey,
   getAddressFromChildPubkey,
+  createTransasction
 } from "./utils/bitcoinjs-lib";
 
 import {
@@ -68,7 +69,7 @@ export default function App() {
       }
     };
     getSeed();
-  }, [mnemonic]);
+  }, []);
 
   // Addresses
   useEffect(() => {

@@ -6,7 +6,8 @@ import {
   BlockstreamAPIUtxoResponse,
 } from "src/types";
 
-const BASE_URL = "https://blockstream.info/api";
+// const BASE_URL = "https://blockstream.info/api";
+const BASE_URL="https://blockstream.info/testnet/api"
 
 export const getTransactionsFromAddress = async (
   address: Address
@@ -32,5 +33,7 @@ export const getFeeRates = async () => {
 };
 
 export const broadcastTx = async (txHex: string) => {
-  throw new Error("Function not implemented yet");
+  const { data } = await axios.post(`${BASE_URL}/tx`, txHex);
+
+  return data;
 };
