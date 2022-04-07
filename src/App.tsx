@@ -17,8 +17,7 @@ import {
   getMasterPrivateKey,
   getXpubFromPrivateKey,
   deriveChildPublicKey,
-  getAddressFromChildPubkey,
-  createTransasction
+  getAddressFromChildPubkey
 } from "./utils/bitcoinjs-lib";
 
 import {
@@ -56,7 +55,7 @@ export default function App() {
           newMnemonic = getNewMnemonic();
         }
         setMnemonic(newMnemonic);
-        const newMasterPrivateKey = await getMasterPrivateKey(mnemonic);
+        const newMasterPrivateKey = await getMasterPrivateKey(newMnemonic);
         setMasterFingerprint(newMasterPrivateKey.fingerprint);
         const derivationPath = "m/84'/0'/0'"; // P2WPKH
         const newXpub = getXpubFromPrivateKey(
